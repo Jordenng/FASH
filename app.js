@@ -9,7 +9,10 @@ var express     = require("express"),
     User        = require("./models/user"),
     seedDB      = require("./seeds")
 
-mongoose.connect("mongodb://localhost/yelp_camp_v6");
+mongoose.connect("mongodb://localhost/yelp_camp_v6", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -27,6 +30,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// middlewear//
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
@@ -134,13 +138,15 @@ app.get("/register", function(req, res){
     res.render("register");
 });
 //handle sign up logic
+// creates user register logic and then authenticats them
 app.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
-        if(err){
+        if(err) {
             console.log(err);
             return res.render("register");
         }
+        // if works - i lock in user and log them in
         passport.authenticate("local")(req, res, function(){
             res.redirect("/campgrounds");
         });
@@ -151,6 +157,7 @@ app.post("/register", function(req, res){
 app.get("/login", function(req, res){
     res.render("login");
 });
+
 // handling login logic
 app.post("/login", passport.authenticate("local",
     {
@@ -159,12 +166,13 @@ app.post("/login", passport.authenticate("local",
     }), function(req, res){
 });
 
-// logic route
+//  logout logic route
 app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/campgrounds");
 });
 
+//middlewear
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
@@ -172,6 +180,6 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(3000, function(){
     console.log("The YelpCamp Server Has Started!");
 });
