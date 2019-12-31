@@ -3,7 +3,7 @@ var router  = express.Router({mergeParams: true});
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
 
-//Comments New
+//Comments New.
 router.get("/new", isLoggedIn, function(req, res){
     // find campground by id
     console.log(req.params.id);
