@@ -2,6 +2,7 @@ var express = require("express");
 var router  = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
+request = require('request');
 
 // root route
 router.get("/", function(req, res){
@@ -9,7 +10,20 @@ router.get("/", function(req, res){
 });
 
 router.get("/home", function(req, res){
-    res.render("home");
+    let apiKey = '88b3abdc1bf197e8f4fc205bc3d29633\n';
+    let city = 'lod, il';
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+
+    request(url, function (err, response, body) {
+        if(err){
+            console.log('error:', error);
+        } else {
+            var weather = JSON.parse(body);
+            var message = `${weather.main.temp}`;
+            console.log(message);
+            res.render("home", {message: message});
+        }
+    });
 });
 // show register form
 router.get("/register", function(req, res){
@@ -50,5 +64,7 @@ router.get("/logout", function(req, res){
     req.flash("success","log out");
     res.redirect("/clothes");
 });
+
+
 
 module.exports = router;

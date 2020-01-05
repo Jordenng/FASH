@@ -1,9 +1,13 @@
 <%- include ('./partials/header') %>
 
-<h1>Welcome to my personal recommendations!</h1>
-<p>This will be dynamic updated soon</p>
-<a1>this is my rec for right now: </a1>
-<img src="http://res.cloudinary.com/netq-recipes/image/upload/v1536251687/eeeuygyxyaka3kcwqgfj.jpg"
-        alt="T Shirt for the summer">
+
+<h1>Welcome to my weather recommendations!</h1>
+<p>This weather right now is: <%=  message %> degrees </p>
+<% if (message < 20){%>
+    <a1> The following dress suits the weather: </a1>
+    <img src="https://ssaw.io/showroom/376-large_default/no6-winter-eclipse-dress-in-royal.jpg"
+             alt="T Shirt for the summer">
+<% }%>
+
 
 <%- include ('./partials/footer') %>
