@@ -1,1 +1,1 @@
-# My Yelp Camp Project
+# My Recommendation App Project
