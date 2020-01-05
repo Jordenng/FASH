@@ -74,7 +74,7 @@ router.put("/:id", middleware.checkCampgroundOwnership, function(req, res){
         } else {
             res.redirect("/campgrounds"+ req.params.id);
         }
-        });
+    });
 });
 
 // destroy //
