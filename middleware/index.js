@@ -1,19 +1,19 @@
-var Campground = require("../models/campground");
+var Campground = require("../models/clothes");
 var Comment = require("../models/comment");
 
 // all the middleware //
 var middlewareObj = {};
 
-middlewareObj.checkCampgroundOwnership = function(req, res, next){
+middlewareObj.checkItemOwnership = function(req, res, next){
         if (req.isAuthenticated()){
-            Campground.findById(req.params.id, function(err, foundCampground){
+            Campground.findById(req.params.id, function(err, foundItem){
                 if (err) {
-                    req.flash("error", "Campground not found");
+                    req.flash("error", "Item not found");
                     res.redirect("back");
                 } else {
-                    // does user own campground
-                    if(foundCampground.author.id.equals(req.user._id)){
-                        next(); // send also campground ID
+                    // does user own item?
+                    if(foundItem.author.id.equals(req.user._id)){
+                        next(); // send also item ID
                     } else {
                         req.flash("error", "You don't have permission to do that");
                         res.redirect("back");
@@ -54,6 +54,6 @@ middlewareObj.isLoggedIn = function(req, res, next){
     }
     req.flash("error", "Please log in first!");
     res.redirect("/login");
-}
+};
 
 module.exports = middlewareObj;
