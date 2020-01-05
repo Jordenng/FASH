@@ -8,8 +8,7 @@ var express     = require("express"),
     methodOverride = require("method-override"),
     Clothes  = require("./models/clothes"),
     Comment     = require("./models/comment"),
-    User        = require("./models/user"),
-    seedDB      = require("./seeds");
+    User        = require("./models/user");
 
 
 // requiring routes
