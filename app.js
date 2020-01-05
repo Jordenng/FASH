@@ -11,17 +11,19 @@ var express     = require("express"),
     User        = require("./models/user"),
     seedDB      = require("./seeds")
 
+
 // requiring routes
 var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index")
 
-// mongoose.connect("mongodb://localhost/yelp_camp_v6", {
-mongoose.connect("    mongodb+srv://Yarden:yelpcamp@cluster0-7k43z.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect(process.env.databaseURL, {
+// mongoose.connect("    mongodb+srv://Yarden:yelpcamp@cluster0-7k43z.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
 });
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
