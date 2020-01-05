@@ -56,11 +56,18 @@ npm install
 
 # Built with the following dependencies:
 ejs
+
 express
+
 mongoose
+
 passport
+
 passport-local
+
 express-session
+
 method-override
+
 connect-flash
 
