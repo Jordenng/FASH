@@ -15,10 +15,10 @@ var express     = require("express"),
 // requiring routes
 var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
-    indexRoutes      = require("./routes/index")
+    indexRoutes      = require("./routes/index");
 
-// mongoose.connect(process.env.DATABASEURL, {
-mongoose.connect("mongodb+srv://Yarden:yelpcamp@cluster0-7k43z.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://localhost/camp", {
+// mongoose.connect("mongodb+srv://Yarden:yelpcamp@cluster0-7k43z.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
