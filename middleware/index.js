@@ -1,4 +1,4 @@
-var Campground = require("../models/clothes");
+var Clothes = require("../models/clothes");
 var Comment = require("../models/comment");
 
 // all the middleware //
@@ -6,7 +6,7 @@ var middlewareObj = {};
 
 middlewareObj.checkItemOwnership = function(req, res, next){
         if (req.isAuthenticated()){
-            Campground.findById(req.params.id, function(err, foundItem){
+            Clothes.findById(req.params.id, function(err, foundItem){
                 if (err) {
                     req.flash("error", "Item not found");
                     res.redirect("back");
