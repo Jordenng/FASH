@@ -25,12 +25,12 @@ router.get("/home", function(req, res){
         }
     });
 });
-// show register form
+// show register form -- sign up tab leads here
 router.get("/register", function(req, res){
     res.render("register");
 });
 
-// handle sign up logic
+// handle sign up logic -- sign up tab here
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
