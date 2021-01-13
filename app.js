@@ -18,8 +18,7 @@ var commentRoutes    = require("./routes/comments"),
     clothesRoutes = require("./routes/clothes"),
     indexRoutes      = require("./routes/index");
 
-// mongoose.connect("mongodb://localhost/camp", {
-mongoose.connect("mongodb+srv://Yarden:yelpcamp@cluster0-7k43z.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://Yarden:fash@cluster0-7k43z.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
